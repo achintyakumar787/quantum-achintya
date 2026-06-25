@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achintya Kumar | Cyberpunk Student Blog</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+    --bg:#0b0f14;
+    --card:#121923;
+    --accent:#00bfff;
+    --accent2:#00f5ff;
+    --text:#eaf6ff;
+    --muted:#8aa8c7;
+    --glow:0 0 10px rgba(0,191,255,.7),
+           0 0 20px rgba(0,191,255,.4);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(0,191,255,.12), transparent 30%),
+    radial-gradient(circle at 80% 60%, rgba(0,255,255,.08), transparent 35%),
+    linear-gradient(180deg,#070b10,#0b0f14);
+    z-index:-2;
+}
+
+.grid{
+    position:fixed;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(0,191,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,191,255,.05) 1px, transparent 1px);
+    background-size:50px 50px;
+    z-index:-1;
+}
+
+/* Header */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    backdrop-filter:blur(12px);
+    background:rgba(11,15,20,.8);
+    border-bottom:1px solid rgba(0,191,255,.2);
+    z-index:1000;
+}
+
+nav{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 5%;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:1.3rem;
+    font-weight:800;
+    color:var(--accent2);
+    text-shadow:var(--glow);
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:var(--text);
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--accent2);
+}
+
+/* Sections */
+
+section{
+    min-height:100vh;
+    padding:120px 10% 80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.hero{
+    text-align:center;
+}
+
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(2.8rem,7vw,6rem);
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:var(--accent2);
+    text-shadow:var(--glow);
+    display:inline-block;
+    animation:flicker 4s infinite;
+}
+
+@keyframes flicker{
+    0%,18%,22%,25%,53%,57%,100%{
+        opacity:1;
+        text-shadow:
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff,
+        0 0 40px #00bfff;
+    }
+    20%,24%,55%{
+        opacity:.4;
+        text-shadow:none;
+    }
+}
+
+.typing{
+    color:var(--muted);
+    font-size:1.2rem;
+    max-width:700px;
+    margin:auto;
+}
+
+.hero-btn{
+    margin-top:35px;
+}
+
+.hero-btn a{
+    display:inline-block;
+    padding:14px 32px;
+    border:2px solid var(--accent);
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    transition:.4s;
+}
+
+.hero-btn a:hover{
+    background:var(--accent);
+    box-shadow:var(--glow);
+}
+
+/* Section Titles */
+
+.section-title{
+    font-family:'Orbitron',sans-serif;
+    font-size:2.5rem;
+    margin-bottom:40px;
+    color:var(--accent2);
+    text-shadow:var(--glow);
+}
+
+/* About */
+
+.about-card{
+    background:var(--card);
+    border:1px solid rgba(0,191,255,.25);
+    border-radius:25px;
+    padding:40px;
+    line-height:1.9;
+    box-shadow:0 0 30px rgba(0,191,255,.08);
+}
+
+/* Interests */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    padding:35px;
+    border-radius:20px;
+    border:1px solid rgba(0,191,255,.2);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(0,245,255,.15),transparent);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(0,191,255,.25);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:var(--accent2);
+    font-family:'Orbitron';
+}
+
+.icon{
+    font-size:2.5rem;
+    margin-bottom:15px;
+}
+
+/* Achievement */
+
+.achievement{
+    background:linear-gradient(135deg,#101823,#0f2635);
+    border-radius:30px;
+    padding:50px;
+    border:1px solid rgba(0,191,255,.25);
+    text-align:center;
+    box-shadow:0 0 35px rgba(0,191,255,.15);
+}
+
+.achievement h3{
+    font-family:'Orbitron';
+    color:var(--accent2);
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+/* Contact */
+
+.contact{
+    text-align:center;
+}
+
+.contact-box{
+    background:var(--card);
+    padding:40px;
+    border-radius:25px;
+    border:1px solid rgba(0,191,255,.2);
+}
+
+.contact p{
+    margin:15px 0;
+    color:var(--muted);
+}
+
+.connect-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:14px 30px;
+    background:transparent;
+    border:2px solid var(--accent2);
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.connect-btn:hover{
+    background:var(--accent2);
+    color:#000;
+    box-shadow:var(--glow);
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    border-top:1px solid rgba(0,191,255,.15);
+}
+
+/* Scroll Animations */
+
+.hidden{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+    nav ul{
+        gap:15px;
+        font-size:.9rem;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+
+    section{
+        padding:110px 7% 70px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="grid"></div>
+
+<header>
+<nav>
+<div class="logo">AK//CYBERBLOG</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#interests">Interests</a></li>
+<li><a href="#achievement">Achievement</a></li>
+<li><a href="#contact">Connect</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+<div class="hidden">
+<h1>
+Hi, I'm <span>Achintya Kumar</span>
+</h1>
+
+<p class="typing">
+Grade 8 Student • Future Innovator • Coding Enthusiast •
+Building tomorrow through robotics, machinery and technology.
+</p>
+
+<div class="hero-btn">
+<a href="#about">Explore My World</a>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+<div class="hidden">
+<h2 class="section-title">About Me</h2>
+
+<div class="about-card">
+<p>
+Hello! I'm <strong>Achintya Kumar</strong>, a Grade 8 student at
+<strong>Andhra Education Society</strong>.
+</p>
+
+<br>
+
+<p>
+I am fascinated by the future of technology and love exploring
+how machines, code, and innovation work together.
+When I'm not studying, you'll often find me building ideas,
+experimenting with coding projects, learning about robotics,
+or imagining futuristic technologies that could change the world.
+</p>
+
+<br>
+
+<p>
+My favourite subject is <strong>Coding</strong> because it allows me to transform
+creative ideas into real digital experiences. I believe curiosity,
+innovation, and continuous learning are the keys to building the future.
+</p>
+</div>
+</div>
+</section>
+
+<!-- INTERESTS -->
+
+<section id="interests">
+<div class="hidden">
+<h2 class="section-title">My Interests</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🤖</div>
+<h3>Robotics</h3>
+<p>
+Exploring intelligent machines and designing systems that can interact
+with the real world.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">💻</div>
+<h3>Coding</h3>
+<p>
+Creating games, apps and experiments while learning new technologies
+and programming concepts.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">⚙️</div>
+<h3>Machinery</h3>
+<p>
+Understanding how engines, mechanisms and futuristic hardware work
+behind the scenes.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ACHIEVEMENT -->
+
+<section id="achievement">
+<div class="hidden">
+<h2 class="section-title">Achievement Spotlight</h2>
+
+<div class="achievement">
+<h3>The Custom Physics Engine Game</h3>
+
+<p>
+One of my proudest projects is developing a custom physics-engine-based game.
+Instead of relying entirely on pre-built systems, I explored how movement,
+forces, collisions and game mechanics can be simulated through code.
+</p>
+
+<br>
+
+<p>
+This project strengthened my programming skills, problem-solving ability,
+and understanding of how real-world physics can power interactive digital experiences.
+</p>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+<div class="hidden">
+<h2 class="section-title">Let's Connect</h2>
+
+<div class="contact-box">
+<h3>Future Tech Explorer 🚀</h3>
+
+<p>
+Interested in coding, robotics, gaming technology, and futuristic innovation.
+</p>
+
+<p>
+School: Andhra Education Society</p>
+<p>Grade: 8th</p>
+
+<a href="mailto:your-email@example.com" class="connect-btn">
+Connect With Me
+</a>
+</div>
+</div>
+</section>
+
+<footer>
+© 2026 Achintya Kumar | Designed with Cyberpunk Energy ⚡
+</footer>
+
+<script>
+
+/* Fade In On Scroll */
+
+const observer = new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+},{
+threshold:0.15
+});
+
+document.querySelectorAll('.hidden').forEach(el=>{
+observer.observe(el);
+});
+
+/* Header Glow on Scroll */
+
+window.addEventListener('scroll',()=>{
+const header=document.querySelector('header');
+
+if(window.scrollY>50){
+header.style.boxShadow="0 0 20px rgba(0,191,255,.25)";
+}else{
+header.style.boxShadow="none";
+}
+});
+
+</script>
+
+</body>
+</html>
